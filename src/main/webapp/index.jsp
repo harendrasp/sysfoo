@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Sysfoo Demo App by School of Devops</title>
+		<title>Sysfoo Demo App by School of Devops(Adding this change to create a diff)</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
