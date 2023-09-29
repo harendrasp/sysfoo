@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<title>Sysfoo Demo App by School of Devops(creating change to generate diff)</title>
-		<meta charset="utf-8" />
+    <meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
