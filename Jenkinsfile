@@ -42,6 +42,7 @@ pipeline {
     }
 
     stage('Docker B&P') {
+      agent any
       steps {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'dckr_pat_E1P6ElnsQuHyDdSqE7DveqABpgQ') {
