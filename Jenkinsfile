@@ -65,6 +65,9 @@ pipeline {
     }
 
     stage('Deploy to dev') {
+      when {
+        branch 'master'
+      }
       agent any
       steps {
         script {
