@@ -6,6 +6,7 @@ pipeline {
         docker {
           image 'maven:3.6.3-jdk-11-slim'
         }
+
       }
       steps {
         echo 'compile maven app'
@@ -28,7 +29,7 @@ pipeline {
 
     stage('package') {
       when {
-          branch 'master'
+        branch 'master'
       }
       parallel {
         stage('package') {
@@ -56,7 +57,18 @@ pipeline {
                 dockerImage.push("dev")
               }
             }
+
           }
+        }
+
+      }
+    }
+
+    stage('Deploy to dev') {
+      agent any
+      steps {
+        script {
+          "docker-compose up -d"
         }
 
       }
