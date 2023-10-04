@@ -1,12 +1,13 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.6.3-jdk-11-slim'
-    }
-
-  }
+  agent none
   stages {
     stage('build') {
+      agent {
+        docker {
+          image 'maven:3.6.3-jdk-11-slim'
+        }
+
+      }
       steps {
         echo 'compile maven app'
         sh 'mvn compile'
@@ -14,6 +15,12 @@ pipeline {
     }
 
     stage('test') {
+      agent {
+        docker {
+          image 'maven:3.6.3-jdk-11-slim'
+        }
+
+      }
       steps {
         echo 'Test maven app'
         sh 'mvn clean test'
@@ -21,10 +28,30 @@ pipeline {
     }
 
     stage('package') {
+      agent {
+        docker {
+          image 'maven:3.6.3-jdk-11-slim'
+        }
+
+      }
       steps {
         echo 'package maven app'
         sh 'mvn package -DskipTests'
         archiveArtifacts 'target/*war'
+      }
+    }
+
+    stage('Docker B&P') {
+      steps {
+        script {
+          docker.withRegistry('https://index.docker.io/v1/', 'dckr_pat_E1P6ElnsQuHyDdSqE7DveqABpgQ') {
+            def dockerImage = docker.build("letmeplay/sysfoo:v${env.BUILD_ID}", "./")
+            dockerImage.push()
+            dockerImage.push("latest")
+            dockerImage.push("dev")
+          }
+        }
+
       }
     }
 
